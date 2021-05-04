@@ -38,7 +38,7 @@ struct ContentView: View {
                     .padding(.leading, 30)
                     .padding(.trailing, 30)
                     .background(Color.green)
-                    .position(x:200, y:620)
+                    .position(x:190, y:620)
                 
                 /*Button("here") {
                     quote = parseCSVFacts()
@@ -97,13 +97,18 @@ struct SecondView:View {
         @State private var showingImagePicker: Bool = false
         @State private var inputImage: UIImage?
         @State private var croppedImage: UIImage?
-        @State private(set) var sourceType: ImagePicker.SourceType = .photoLibrary
+        //@State private(set) var sourceType: ImagePicker.SourceType = .camera //.photoLibrary
         @State var number: Int = 0
         @State var index: Int = 0
         @State private var x: NSNumber = 0
         @State private var y: NSNumber = 0
         @State private var width: NSNumber = 0
         @State private var height: NSNumber = 0
+        
+        
+        @State var showActionSheet = false
+        @State var showImagePicker = false
+        @State var sourceType: UIImagePickerController.SourceType = .camera
         
         //@State var line: Lin
         //@ State private var odcoorinates: MultiArray(Double 0 x 4)
@@ -119,7 +124,7 @@ struct SecondView:View {
                     Rectangle()
                         .fill(Color.secondary)
                         .frame(width: 350, height:350)
-                        .position(x:195, y:90)
+                        .position(x:188, y:90)
                         
                     //User has inputted an image
                     if image != nil {
@@ -131,7 +136,7 @@ struct SecondView:View {
                         image?
                             .resizable()
                             .frame(width: 350, height:350)
-                            .position(x:195, y:90)
+                            .position(x:188, y:90)
                             /*.overlay(GeometryReader{ (geometry: GeometryProxy) in
                             Rectangle()
                             .path(in: CGRect(
@@ -147,14 +152,35 @@ struct SecondView:View {
                 }.onTapGesture {
                     /* add image*/
                     self.showingImagePicker = true
-                }
+                   // self.shouldPresentActionSheet = true
+                    
+                    self.showActionSheet = true
+                } .actionSheet(isPresented: $showActionSheet) {
+                    ActionSheet(title: Text("How would you like to add an image?"), message: nil, buttons: [
+                    //Button1
+                    
+                    .default(Text("Camera"), action: {
+                            self.showImagePicker = true
+                            self.sourceType = .camera
+                    }),
+                    //Button2
+                    .default(Text("Photo Library"), action: {
+                            self.showImagePicker = true
+                            self.sourceType = .photoLibrary
+                    }),
+                    
+                    //Button3
+                        .cancel()
+                    ])
+                }//.sheet(isPresented: $showImagePicker, content: <#T##() -> View#>)
                 
-               
+                
+                
                 Text("Please Select Location")
                     .bold()
                     .foregroundColor(.white)
                     .font(.system(size:30))
-                    .position(x:200, y:150)
+                    .position(x:190, y:150)
                     
                 
                 Picker("Please choose a city", selection: $selectedCity) {
@@ -166,12 +192,16 @@ struct SecondView:View {
                 .opacity(1.5)
                 .padding(.top, -85)
                 .padding(.bottom, -40)
-                .position(x:200, y:120)
-                .sheet(isPresented: $showingImagePicker,
+                .position(x:190, y:120)
+                
+                .sheet (isPresented: $showImagePicker, onDismiss: loadImage) {
+                    //imagePicker(image: self.$inputImage, sourceType: self.sourceType)
+                    imagePicker(image: self.$inputImage , showImagePicker: self.$showImagePicker,  sourceType: self.sourceType)
+                }
+                /*.sheet(isPresented: $showingImagePicker,
                         onDismiss: loadImage) {
                     ImagePicker(sourceType: self.sourceType, image: self.$inputImage)
-                
-            }
+            }*/
                 Button(
                    action: {
                     
@@ -215,7 +245,7 @@ struct SecondView:View {
                     //self.image = Image("checkmark")
                     let croppedImage = cropImage(imageToCrop: self.inputImage!, toRect: CGRectMake(x: CGFloat(self.x), y: CGFloat(self.y), width: CGFloat(self.width), height: CGFloat(self.height)))
                     //self.image = self.$croppedImage
-                    ImagePicker(sourceType: self.sourceType, image: self.$croppedImage)
+                    //ImagePicker(sourceType: self.sourceType, image: self.$croppedImage)
                     //print(croppedImage)
                    
                 
@@ -257,7 +287,7 @@ struct SecondView:View {
                 .padding(.top, 10)
                 .padding(.bottom, 10)
                 .background(Color.green)
-                .position(x:200, y:80)
+                .position(x:188, y:80)
                 
                 if $showPopUpTrue.wrappedValue {
                     ZStack(alignment: .center) {
@@ -294,7 +324,7 @@ struct SecondView:View {
                         }
                     }.frame(width: 350, height: 610)
                     .cornerRadius(20).shadow(radius:20)
-                    .position(x: 195, y: -270)
+                    .position(x: 188, y: -270)
                 }
                 
                 if $showPopUpFalse.wrappedValue {
@@ -334,7 +364,7 @@ struct SecondView:View {
                         }
                     }.frame(width: 350, height: 610)
                     .cornerRadius(20).shadow(radius:20)
-                    .position(x: 195, y: -270)
+                    .position(x: 188, y: -270)
                     
                 }
                 
@@ -372,14 +402,15 @@ struct SecondView:View {
                     .bold()
                     .font(.system(size: 50))
                     .foregroundColor(.white)
-                    .position(x:196, y:190)
+                    .position(x:190, y:190)
                 
                 Text(quote)
                     .foregroundColor(.white)
                     .font(.system(size: 35))
                     .multilineTextAlignment(.center)
                     .frame(width: 350)
-                    .position(x:196, y:410)
+                    .padding(10)
+                    .position(x:190, y:350)
                 
             }.background(
             Image("recycle background2")

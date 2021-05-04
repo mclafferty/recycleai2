@@ -573,7 +573,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"RecycleAI_2.0/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = BZ9S5XJN2B;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = RecycleAI_2.0/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -598,7 +598,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"RecycleAI_2.0/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = BZ9S5XJN2B;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = RecycleAI_2.0/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
