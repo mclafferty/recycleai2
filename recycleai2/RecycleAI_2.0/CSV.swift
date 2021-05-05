@@ -2,17 +2,14 @@
 //  CSV.swift
 //  RecycleAI_2.0
 //
-//  Created by Morgan Lafferty on 4/27/21.
-//
-
-
-//
-//  CSV.swift
-//  SwiftCSV
 //
 //  Created by Naoto Kaneko on 2/18/16.
 //  Copyright © 2016 Naoto Kaneko. All rights reserved.
-//
+//  https://github.com/swiftcsv/SwiftCSV/blob/master/SwiftCSV/CSV.swift
+
+//This code was taken from the SwiftCSV library to parse CSV files
+//Due to issues importing this library we decided to use the code directly
+
 import Foundation
 
 public protocol CSVView {
