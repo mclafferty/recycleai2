@@ -9,7 +9,6 @@ import Foundation
 import CoreML
 
 //Code for handling model output
-
 extension MLMultiArray {
     /// All values will be stored in the last dimension of the MLMultiArray (default is dims=1)
         static func from(_ arr: [Int], dims: Int = 1) -> MLMultiArray {
@@ -36,7 +35,6 @@ extension MLMultiArray {
             }
             return arr
         }
-
 
     /// This will concatenate all dimensions into one one-dim array.
     static func toDoubleArray(_ o: MLMultiArray) -> [Double] {
@@ -67,9 +65,6 @@ extension MLMultiArray {
             }
         return arr
     }
-    
-    
-    
 }
 
 func argmax(_ input: MLMultiArray, start: Int, stop: Int) -> (maxIndex: Int, maxValue: Float) {
@@ -86,44 +81,3 @@ func argmax(_ input: MLMultiArray, start: Int, stop: Int) -> (maxIndex: Int, max
 
     return (maxIndex, maxValue)
 }
-
-/*
-extension Array where Element: Comparable {
-   func argmax() -> Index? {
-       return indices.max(by: { self[$0] < self[$1] })
-   }
-   
-   func argmin() -> Index? {
-       return indices.min(by: { self[$0] < self[$1] })
-   }
-}
- */
-
-/*
-struct Math {
-    
-    /**
-     Returns the index and value of the largest element in the array.
-     
-     - Parameters:
-     - ptr: Pointer to the first element in memory.
-     - count: How many elements to look at.
-     - stride: The distance between two elements in memory.
-     */
-    
-    /// MLMultiArray helper.
-    /// Works in our specific use case.
-    static func argmax(_ multiArray: MLMultiArray) -> (Int, Double) {
-        assert(multiArray.dataType == .double)
-        let ptr = UnsafeMutablePointer<Double>(OpaquePointer(multiArray.dataPointer))
-        return Math.argmax(ptr, count: multiArray.count)
-    }
-    
-  */
-    /// Top-K.
-    /// Select the k most-probable elements indices from `arr`
-    /// and return both the indices (from the original array)
-    /// and their softmaxed probabilities.
-    ///
-    
-//}
