@@ -74,13 +74,23 @@ struct SecondView:View {
     
     struct RecycleView: View {
         //currently supported cities
-        var cities: Array<String> = ["Berkeley, CA", "Oakland, CA", "San Francisco, CA",
-                                     "Alameda, CA", "Albany, CA", "Dublin, CA", "Emeryville, CA", "Fremont, CA",
-                                     "Hayward, CA", "Livermore, CA", "Newark, CA", "Piedmont, CA", "Pleasanton, CA", "San Leandro, CA",
-                                     "Union City, CA", "Anitoch, CA", "Bay Point, CA", "Brentwood, CA", "Concord, CA", "Danville, CA",
-                                    "El Cerrito, CA", "Hercules, CA", "Lafayette, CA", "Martinez, CA", "Orinda, CA", "Pittsburg, CA",
-                                    "Pleasant Hill, CA", "Richmond, CA", "San Pablo, CA", "San Ramon, CA", "Walnut Creek, CA", "Corte Madera,CA",
-                                    "Larkspur, CA", "Mill Valley, CA", "Novato, CA", "San Anselmo, CA", "San Rafael, CA", "Sausalito, CA", "Tiburon, CA", "Napa, CA", "Yountville, CA", "St. Helena, CA", "Brisbane, CA", "Burlingame, CA", "Daly City, CA", "Foster City, CA"]
+        
+        var cities: Array<String> = ["Alameda, CA", "Albany, CA", "Antioch, CA", "Bay Point, CA", "Benicia, CA", "Berkeley, CA", "Brentwood, CA",
+                                    "Brisbane, CA", "Burlingame, CA", "Campbell, CA", "Concord, CA", "Corte Madera, CA", "Cupertino, CA", "Daly City, CA",
+                                    "Danville, CA", "Dixon, CA", "Dublin, CA", "El Cerrito, CA", "Emeryville, CA", "Fairfield, CA", "Foster City, CA",
+                                    "Fremont, CA", "Gilroy, CA", "Half Moon Bay, CA", "Hayward, CA", "Healdsburg, CA", "Hercules, CA", "Lafayette, CA",
+                                    "Larkspur, CA", "Livermore, CA", "Los Altos, CA", "Los Gatos, CA", "Martinez, CA", "Menlo Park, CA", "Mill Valley, CA",
+                                    "Millbrae, CA", "Milpitas, CA", "Morgan Hill, CA", "Mountain View, CA", "Napa, CA", "Newark, CA", "Novato, CA",
+                                    "Oakland, CA", "Orinda, CA", "Palo Alto, CA", "Petaluma, CA", "Piedmont, CA", "Pittsburg, CA", "Pleasant Hill, CA",
+                                    "Pleasanton, CA", "Portola Valley, CA", "Redwood City, CA", "Richmond, CA", "Rohnert Park, CA", "San Anselmo, CA", "San Bruno, CA",
+                                    "San Carlos, CA", "San Francisco, CA", "San Jose, CA", "San Leandro, CA", "San Mateo, CA", "San Pablo, CA", "San Rafael, CA",
+                                    "San Ramon, CA", "Santa Clara, CA", "Santa Rosa, CA", "Saratoga, CA", "Sausalito, CA", "Sebastopol, CA", "Sonoma, CA", "South San Francisco, CA",
+                                    "St. Helena, CA", "Sunnyvale, CA", "Tiburon, CA", "Union City, CA", "Vacaville, CA", "Vallejo, CA", "Walnut Creek, CA", "Windsor, CA",
+                                    "Woodside, CA", "Yountville, CA"]
+        
+        
+        
+        
         @State private var selectedCity: String = "Berkeley, CA"
         @State var showPopUpTrue: Bool = false
         @State var showPopUpFalse: Bool = false
