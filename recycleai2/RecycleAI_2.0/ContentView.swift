@@ -15,8 +15,6 @@ import CoreGraphics
 public var quote: String = ""
 
 struct ContentView: View {
-   //public var quote:String
-   
     var body: some View {
         NavigationView {
             ZStack{
@@ -39,14 +37,6 @@ struct ContentView: View {
                     .padding(.trailing, 30)
                     .background(Color.green)
                     .position(x:190, y:620)
-                
-                /*Button("here") {
-                    quote = parseCSVFacts()
-                    print(quote)
-                }.font(.system(size:30))
-                .position(x:200, y:620)*/
-
-                
             }
             .background(
              Image("Welcome Screen")
@@ -55,6 +45,7 @@ struct ContentView: View {
              .edgesIgnoringSafeArea(.all)
              .frame(width:UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
                 .onTapGesture {
+                    //randomly generate recycling tip when user exits welcome screen
                     quote = parseCSVFacts()
                     print(quote)
                 }
@@ -66,7 +57,6 @@ struct ContentView: View {
 }
 
 struct SecondView:View {
-    
     var body: some View {
         TabView{
             RecycleView()
@@ -83,6 +73,7 @@ struct SecondView:View {
     }
     
     struct RecycleView: View {
+        //currently supported cities
         var cities: Array<String> = ["Berkeley, CA", "Oakland, CA", "San Francisco, CA",
                                      "Alameda, CA", "Albany, CA", "Dublin, CA", "Emeryville, CA", "Fremont, CA",
                                      "Hayward, CA", "Livermore, CA", "Newark, CA", "Piedmont, CA", "Pleasanton, CA", "San Leandro, CA",
@@ -97,7 +88,6 @@ struct SecondView:View {
         @State private var showingImagePicker: Bool = false
         @State private var inputImage: UIImage?
         @State private var croppedImage: UIImage?
-        //@State private(set) var sourceType: ImagePicker.SourceType = .camera //.photoLibrary
         @State var number: Int = 0
         @State var index: Int = 0
         @State private var x: NSNumber = 0
@@ -110,14 +100,12 @@ struct SecondView:View {
         @State var showImagePicker = false
         @State var sourceType: UIImagePickerController.SourceType = .camera
         
-        //@State var line: Lin
-        //@ State private var odcoorinates: MultiArray(Double 0 x 4)
-        /* figure out how to set this index!! */
-       
+       //initialize object detetion model
         let model = try! MyObjectDetector3_1()
+        
+        //initialize classification model
         let cnn_model = try! cnn2()
         
-          
         var body: some View {
             VStack{
                 ZStack{
@@ -128,20 +116,17 @@ struct SecondView:View {
                         
                     //User has inputted an image
                     if image != nil {
-                        
-                        //let resizedImage = image?.resizeTo(size: CGSize(width: 299, height: 299))
-                        //let buffer = CVPixelBuffer = (resizedImage?.toBuffer())!
-                        
-                       // let output =
                         image?
                             .resizable()
                             .frame(width: 350, height:350)
                             .position(x:188, y:90)
+                        
+                            //one attempt to connect object detection model and display bounding boxes
+                        
                             /*.overlay(GeometryReader{ (geometry: GeometryProxy) in
                             Rectangle()
                             .path(in: CGRect(
                                     x: CGFloat(self.x) * self.inputImage!.size.width , y: CGFloat(self.y)*self.inputImage!.size.height, width: CGFloat(self.width) * self.inputImage!.size.width, height: CGFloat(self.height) * self.inputImage!.size.height)).stroke(Color.red)
-                                
                            })*/
 
                     } else {
@@ -150,39 +135,34 @@ struct SecondView:View {
                             .font(.headline)
                     }
                 }.onTapGesture {
-                    /* add image*/
+                    // add image
                     self.showingImagePicker = true
-                   // self.shouldPresentActionSheet = true
                     
                     self.showActionSheet = true
                 } .actionSheet(isPresented: $showActionSheet) {
                     ActionSheet(title: Text("How would you like to add an image?"), message: nil, buttons: [
-                    //Button1
-                    
+                    //Camera Option
                     .default(Text("Camera"), action: {
                             self.showImagePicker = true
                             self.sourceType = .camera
                     }),
-                    //Button2
+                    //Photo Library Option
                     .default(Text("Photo Library"), action: {
                             self.showImagePicker = true
                             self.sourceType = .photoLibrary
                     }),
-                    
-                    //Button3
+                    //Cancel upload button
                         .cancel()
                     ])
-                }//.sheet(isPresented: $showImagePicker, content: <#T##() -> View#>)
-                
-                
-                
+                }
+                                
                 Text("Please Select Location")
                     .bold()
                     .foregroundColor(.white)
                     .font(.system(size:30))
                     .position(x:190, y:150)
                     
-                
+                //Location Picker
                 Picker("Please choose a city", selection: $selectedCity) {
                     ForEach(self.cities, id: \.self) {
                         city in Text(city).tag(city)
@@ -195,32 +175,17 @@ struct SecondView:View {
                 .position(x:190, y:120)
                 
                 .sheet (isPresented: $showImagePicker, onDismiss: loadImage) {
-                    //imagePicker(image: self.$inputImage, sourceType: self.sourceType)
+                    //set selected image and photo source type
                     imagePicker(image: self.$inputImage , showImagePicker: self.$showImagePicker,  sourceType: self.sourceType)
                 }
-                /*.sheet(isPresented: $showingImagePicker,
-                        onDismiss: loadImage) {
-                    ImagePicker(sourceType: self.sourceType, image: self.$inputImage)
-            }*/
+                
                 Button(
                    action: {
-                    
-                    quote = parseCSVFacts()
-                    print(quote)
-                
-                    
-                        //let city = self.selectedCity
+                    //get city data
                     let list = parseCSV(city: self.selectedCity)
-                    print(self.selectedCity)
-                        //print(self.index)
-                    print(list)
-                   
                     
-                    
+                    // finding object detection model prediction of input image
                     /*
-                    call model on self.$inputImage*/
-                    
-                    
                     let resizedImage = inputImage?.resizeTo(size: CGSize(width: 299 , height: 299 ))
                     let buffer: CVPixelBuffer = (resizedImage?.toBuffer())!
                         
@@ -230,8 +195,10 @@ struct SecondView:View {
                     self.y = coords[0]![1]
                     self.width = coords[0]![2]
                     self.height = coords[0]![3]
+ 
+                    */
                     
-                    //replace current image with new image and bounding boxes
+                    //attempt to replace current image with new image and bounding boxes
                     /*self.image = Image(uiImage: self.inputImage!)
                         .resizable()
                         .scaledToFit()
@@ -239,23 +206,21 @@ struct SecondView:View {
                          Rectangle()
                              .path(in: CGRect(
                                  x:00.51 * geometry.size.width, y: 00.508 * geometry.size.height, width: 00.799 * geometry.size.width, height: 00.907 * geometry.size.height)).stroke(Color.red)
-                         
                      })*/
                     
-                    //self.image = Image("checkmark")
-                    let croppedImage = cropImage(imageToCrop: self.inputImage!, toRect: CGRectMake(x: CGFloat(self.x), y: CGFloat(self.y), width: CGFloat(self.width), height: CGFloat(self.height)))
-                    //self.image = self.$croppedImage
-                    //ImagePicker(sourceType: self.sourceType, image: self.$croppedImage)
-                    //print(croppedImage)
+                    // atempt to replace image with version cropped around the bounding box
+                    /*let croppedImage = cropImage(imageToCrop: self.inputImage!, toRect: CGRectMake(x: CGFloat(self.x), y: CGFloat(self.y), width: CGFloat(self.width), height: CGFloat(self.height)))
+                    self.image = self.$croppedImage
+                    */
                    
-                
-                        
+                   
                     //resize image for classification
                     let resizedImage2 = inputImage?.resizeTo(size: CGSize(width: 200 , height: 200))
                     let pixelbuffer = resizedImage2?.toBuffer()
                     
                     //make the classifcation prediction
                     guard let prediction = try? cnn_model.prediction(rescaling_5_input: pixelbuffer!) else {return}
+                    
                     //accessing classifcation
                     let classifications = prediction.Identity.self
                     print(classifications)
@@ -269,11 +234,12 @@ struct SecondView:View {
                     print(self.number)
                         
                     if list![self.number ] == "TRUE" {
+                            //Item can be recycled
                             self.showPopUpTrue.toggle()
                             
                    }
                     else {
-                            
+                            //Item cannot be recycled
                             self.showPopUpFalse.toggle()
                         }
                     }) {
@@ -302,6 +268,7 @@ struct SecondView:View {
                                 .font(.system(size: 44))
                                 .position(x:176, y: 150)
                             Spacer()
+                            //display model classification and user-selected city
                             let string: String = "Number " + String(self.number) + " plastics can be recycled in " + self.selectedCity + "!"
                             Text(string)
                                 .font(.system(size: 20))
@@ -341,9 +308,9 @@ struct SecondView:View {
                                 .font(.system(size: 40))
                                 .position(x:176, y: 150)
                             Spacer()
+                            //display model classification and user-selected city
                             let string2: String = "Number " + String(self.number) + " plastics can not be recycled in " + self.selectedCity + "! This item belongs in the trash."
                             Text(string2)
-                            //Text("Number " + String(self.number) + " plastics can not be recycled in " + String(self.selectedCity) + ". This item belongs in the trash!")
                                 .font(.system(size: 20))
                                 .foregroundColor(.red)
                                 .position(x:164, y: 50)
@@ -385,11 +352,7 @@ struct SecondView:View {
             image = Image(uiImage: inputImage)
         }
     }
-    /*struct LocationView: View {
-        var body: some View {
-            
-    }*/
-
+    
     struct FactsView: View {
        
         var body: some View {
@@ -404,6 +367,7 @@ struct SecondView:View {
                     .foregroundColor(.white)
                     .position(x:190, y:190)
                 
+                //display randomly chosen recycling tip
                 Text(quote)
                     .foregroundColor(.white)
                     .font(.system(size: 35))
@@ -427,10 +391,10 @@ struct SecondView:View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-            /*ContentView(
-            )*/
-        SecondView.RecycleView()
-       /* SecondView.FactsView()*/
+        //If you would like to view previews of the UI view uncomment the following lines
+        //ContentView()
+        //SecondView.RecycleView()
+       //SecondView.FactsView()
     }
 }
 
