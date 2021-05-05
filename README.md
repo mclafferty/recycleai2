@@ -12,6 +12,8 @@ Due to GitHub file size limits, the image data used to train all models can be f
 - Images inside the "OD Data - Training" folder were used to train and validate our CreateML Object Detection model.
 - Images inside the "OD Data - Test" folder were used to test our CreateML Object Detection model. 
 
+Location data files can be found in the "location data" folder. 
+
 
 # Running the iOS Application
 All files needed to run the iOS application in Xcode can be found in the "recycleai2" folder. Please make sure that you have Xcode and cocoapods(https://cocoapods.org) installed before continuing to the following steps. 
