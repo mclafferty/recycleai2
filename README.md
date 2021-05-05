@@ -1,8 +1,8 @@
 # Recycle.ai
 
-Problem: With recycling guidelines varying drastically across cities affecting what products can or cannot be recycled in certain regions, coupled with the lack of public education around product labeling and waste disposal, recycling responsibly is hard. 
+Problem: Recycling responsibly is hard! Not only do recycling guidelines vary drastically across cities affecting what products can or cannot be recycled in certain regions, public education surrounding product labeling and waste disposal is severly lacking. 
 
-Solution: We are a group of UC Berkeley undergraduate students that created Recycle.ai to address this issue. Using computer vision, we've created an iOS app that accurately identifies recycling labels and informs our users whether their product is recyclable or not, based on their current location. This app aims to both encourage individuals to maker smarter waste disposal decisions and educate the general pubic about local recycling guidelines.
+Solution: We are a group of UC Berkeley undergraduate students that created Recycle.ai to address these issues. Using computer vision, we've created an iOS app that accurately identifies recycling labels and informs our users whether their product is recyclable or not, based on their current location. This app aims to both encourage individuals to maker smarter waste disposal decisions and educate the general pubic about local recycling guidelines.
 
 Please see below for instructions on accessing data and reproducing results.
 
@@ -23,6 +23,9 @@ All files needed to run the iOS application in Xcode can be found in the "recycl
 5. You should now be able to press the play button in Xcode to build and run the application on a simulator device. 
 
 # Object Detection 
-Our repo contains both of our attempts at building an object detection model. The "object detection- attempt1" folder contains our initial experimentation with object detection in python. The "object detection- attempt2" folder contains our final object detection .mlmodel file as well as a file named "annotations.json" which contains the coordinates of the bounding boxes that were used to train our model. To train your own object detection model either drag and drop 
+Our repo contains both attempts at building an object detection model. The "object detection- attempt1" folder contains our initial experimentation with object detection in python. The "object detection- attempt2" folder contains our final object detection .mlmodel file as well as a file named "annotations.json" which has the coordinates of the bounding boxes that were used to train our model. To train your own object detection model either drag and drop our object detection trainnig images and "annotations.json" file into the CreateML interface or following the instructions here ___ on how to create your own training bounding boxes. 
+
+# Classification
+
 
 
