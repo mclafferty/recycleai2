@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+// used to convert images to the proper type for both ml models 
 extension UIImage {
     func resizeTo(size: CGSize) -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
@@ -43,13 +44,12 @@ extension UIImage {
         UIGraphicsPopContext()
         CVPixelBufferUnlockBaseAddress(pixelBuffer!, CVPixelBufferLockFlags(rawValue: 0))
         
-        //ok maylin has this exact part above 
-        
         return pixelBuffer
         
     }
 }
 
+//the below functions were used in attempts to connect the object detection model
 func cropImage(imageToCrop: UIImage, toRect rect:CGRect) -> UIImage {
     let imageRef: CGImage = imageToCrop.cgImage!.cropping(to: rect)!
     let cropped: UIImage = UIImage(cgImage: imageRef)

@@ -2,7 +2,7 @@
 //  File.swift
 //  RecycleAI_2.0
 //
-//  Created by Morgan Lafferty on 4/22/21.
+//  Created by Morgan Lafferty, Maylin van Cleeff on 4/22/21.
 //
 
 
@@ -391,10 +391,10 @@ struct SecondView:View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        //If you would like to view previews of the UI view uncomment the following lines
-        //ContentView()
-        //SecondView.RecycleView()
-       //SecondView.FactsView()
+        //view UI previews
+        ContentView()
+        SecondView.RecycleView()
+        SecondView.FactsView()
     }
 }
 
