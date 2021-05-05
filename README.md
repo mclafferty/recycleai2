@@ -25,9 +25,14 @@ All files needed to run the iOS application in Xcode can be found in the "recycl
 5. You should now be able to press the play button in Xcode to build and run the application on a simulator device. 
 
 # Object Detection 
-Our repo contains both attempts at building an object detection model. The "object detection- attempt1" folder contains our initial experimentation with object detection in python. The "object detection- attempt2" folder contains our final object detection .mlmodel file as well as a file named "annotations.json" which has the coordinates of the bounding boxes that were used to train our model. To train your own object detection model either drag and drop our object detection trainnig images and "annotations.json" file into the CreateML interface or following the instructions here ___ on how to create your own training bounding boxes. 
+Our repo contains both attempts at building an object detection model. The "object detection- attempt1" folder contains our initial experimentation with object detection in python. The "object detection- attempt2" folder contains our final object detection .mlmodel file as well as a file named "annotations.json" which has the coordinates of the bounding boxes that were used to train our model. To train your own object detection model either drag and drop our object detection trainnig images and "annotations.json" file into the CreateML interface or following the instructions here https://hackernoon.com/how-to-label-data-create-ml-for-object-detection-82043957b5cb on how to create your own training bounding boxes. 
 
 # Classification
+The "classification" folder contains all files pertaining to our CNN image classification model. 
 
+To run the jupyter notebook file "cnn_model.ipynb":
+1. Download classifcaiton data from google drive link above
+2. run jupyter notebook "cnn_model.ipynb" to open the notebook
+3. adjust file paths for train_ds and val_ds to match the path where the downloaded data is located 
 
 
