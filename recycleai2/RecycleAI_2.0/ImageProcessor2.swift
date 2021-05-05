@@ -10,6 +10,8 @@ import CoreML
 import Vision
 import ImageIO
 
+
+//class used in attempt to connect object detection model 
 class ViewController: UIViewController, UINavigationControllerDelegate {
 
     @IBOutlet weak var photoImageView: UIImageView?
