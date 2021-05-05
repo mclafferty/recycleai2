@@ -1,11 +1,8 @@
 # Recycle.ai
 
-Problem: Recycling is Hard! 
-With recycling guidelines varying drastically across cities affecting what products can or cannot be recycled, coupled with the lack of public education around product labeling and waste disposal, recycling responsibly is hard. 
+Problem: With recycling guidelines varying drastically across cities affecting what products can or cannot be recycled, coupled with the lack of public education around product labeling and waste disposal, recycling responsibly is hard. 
 
-Solution: Recycle.ai!
-Recycle.ai was created by a team of UC Berkeley undergraduate students to address this issue. Using computer vision, they’ve created an iOS app that accurately identifies recycling labels and informs users whether the product is recyclable or not, based on their location. The app aims to encourage individuals to recycle responsibly and educate users about local recycling guidelines.
-
+Solution: Recycle.ai was created by a team of UC Berkeley undergraduate students to address this issue. Using computer vision, we've created an iOS app that accurately identifies recycling labels and informs our users whether their product is recyclable or not, based on their current location. This app aims to both encourage individuals to maker smarter waste disposal decision and educate the pubic on local recycling guidelines.
 
 Please see below for instructions on accessing data and reproducing results.
 
