@@ -5,15 +5,25 @@
 //  Created by Morgan Lafferty on 4/25/21.
 //
 
-
 import Foundation
-//import SwiftCSV
 
+//read city .tsv data file
 func parseCSV(city: String) -> [String]?{
     var list: [String]? = ["Berkeley, CA", "TRUE", "TRUE", "FALSE", "FALSE", "TRUE", "FALSE", "FALSE"]
-    let mapping = [
-        "Berkeley, CA": 0, "Oakland, CA": 1, "San Francisco, CA": 2, "Alameda, CA": 3, "Albany, CA": 4, "Dublin, CA": 5, "Emeryville, CA": 6, "Fremont, CA": 7,
-        "Hayward, CA": 8, "Livermore, CA": 9, "Newark, CA": 10, "Piedmont, CA": 11, "Pleasanton, CA": 12, "San Leandro, CA": 13, "Union City, CA": 14, "Anitoch, CA": 15, "Bay Point, CA": 16, "Brentwood, CA": 17, "Concord, CA": 18, "Danville, CA": 19, "El Cerrito, CA":20, "Hercules, CA":21, "Lafayette, CA": 22, "Martinez, CA":23, "Orinda, CA":24, "Pittsburg, CA":25,"Pleasant Hill, CA": 26, "Richmond, CA": 27, "San Pablo, CA": 28, "San Ramon, CA": 29, "Walnut Creek, CA": 30, "Corte Madera,CA": 31,"Larkspur, CA": 32, "Mill Valley, CA": 33, "Novato, CA": 34, "San Anselmo, CA":35, "San Rafael, CA": 36, "Sausalito, CA":37, "Tiburon, CA":38, "Napa, CA":39, "Yountville, CA":40, "St. Helena, CA":41, "Brisbane, CA":42, "Burlingame, CA":43, "Daly City, CA":44, "Foster City, CA":45]
+    
+    let mapping = ["Alameda, CA": 0, "Albany, CA": 1, "Antioch, CA": 2, "Bay Point, CA": 3, "Benicia, CA": 4, "Berkeley, CA": 5, "Brentwood, CA": 6,
+                   "Brisbane, CA": 7, "Burlingame, CA": 8, "Campbell, CA": 9, "Concord, CA": 10, "Corte Madera, CA": 11, "Cupertino, CA": 12, "Daly City, CA": 13,
+                   "Danville, CA": 14, "Dixon, CA": 15, "Dublin, CA": 16, "El Cerrito, CA": 17, "Emeryville, CA": 18, "Fairfield, CA": 19, "Foster City, CA": 20,
+                   "Fremont, CA": 21, "Gilroy, CA": 22, "Half Moon Bay, CA": 23, "Hayward, CA": 24, "Healdsburg, CA": 25, "Hercules, CA": 26, "Lafayette, CA": 27,
+                   "Larkspur, CA": 28, "Livermore, CA": 29, "Los Altos, CA": 30, "Los Gatos, CA": 31, "Martinez, CA": 32, "Menlo Park, CA": 33, "Mill Valley, CA": 34,
+                   "Millbrae, CA": 35, "Milpitas, CA": 36, "Morgan Hill, CA": 37, "Mountain View, CA": 38, "Napa, CA": 39, "Newark, CA": 40, "Novato, CA": 41,
+                   "Oakland, CA": 42, "Orinda, CA": 43, "Palo Alto, CA": 44, "Petaluma, CA": 45, "Piedmont, CA": 46, "Pittsburg, CA": 47, "Pleasant Hill, CA": 48,
+                   "Pleasanton, CA": 49, "Portola Valley, CA": 50, "Redwood City, CA": 51, "Richmond, CA": 52, "Rohnert Park, CA": 53, "San Anselmo, CA": 54, "San Bruno, CA": 55,
+                   "San Carlos, CA": 56, "San Francisco, CA": 57, "San Jose, CA": 58, "San Leandro, CA": 59, "San Mateo, CA": 60, "San Pablo, CA": 61, "San Rafael, CA": 62,
+                   "San Ramon, CA": 63, "Santa Clara, CA": 64, "Santa Rosa, CA": 65, "Saratoga, CA": 66, "Sausalito, CA": 67, "Sebastopol, CA": 68, "Sonoma, CA": 69, "South San Francisco, CA": 70,
+                   "St. Helena, CA": 71, "Sunnyvale, CA": 72, "Tiburon, CA": 73, "Union City, CA": 74, "Vacaville, CA": 75, "Vallejo, CA": 76, "Walnut Creek, CA": 77, "Windsor, CA": 78,
+                   "Woodside, CA": 79, "Yountville, CA": 80]
+    
     do {
         let csv: CSV? = try CSV(
             name: "Recycle AI Recycling Codes - Sheet1",
@@ -21,11 +31,9 @@ func parseCSV(city: String) -> [String]?{
             bundle: .main,
             delimiter: "\t"
         )
-        /* read data*/
+        //read data
         let i = mapping[city]
-        print(i)
-        print(city)
-        list = csv?.enumeratedRows[i!] //[1...]
+        list = csv?.enumeratedRows[i!]
         
     } catch {
         list = nil
@@ -35,6 +43,7 @@ func parseCSV(city: String) -> [String]?{
    return list
 }
 
+// ready recycling tips .tsv data file 
 func parseCSVFacts() -> String {
     var quote: String
     var aQuote: String = "Becuase it's become increasingly challenging to find buyers for the recycled raw materials of plastics #3-7, even post recycling, these products will get stockpiled or sent to a landfill. Purchasing products in highly recyclable materials like glass, metal, and plastics #1-2 will help reduce your environmental impact!"
@@ -46,11 +55,8 @@ func parseCSVFacts() -> String {
             delimiter: "\t"
         )
         let quotes = csv?.enumeratedRows
-        print(quotes)
         var i = Int.random(in: 0..<quotes!.count)
-        print(i)
         aQuote = quotes![i][0]
-        print("aQuote", aQuote)
         
 
     } catch {
