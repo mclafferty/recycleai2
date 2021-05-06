@@ -24,7 +24,7 @@ struct ContentView: View {
              .font(.system(size:60))
              .foregroundColor(.white)
                 
-        
+            //allows user to navigate to main pages of application
             NavigationLink(
                 destination:SecondView().navigationBarBackButtonHidden(true),
                     label: {
@@ -59,6 +59,7 @@ struct ContentView: View {
 
 struct SecondView:View {
     var body: some View {
+        //bottom tab view that allows users to navigate between the two pages
         TabView{
             RecycleView()
                 .tabItem {
@@ -90,7 +91,7 @@ struct SecondView:View {
         
         
         
-        
+        //Initialize state variables
         @State private var selectedCity: String = "Berkeley, CA"
         @State var showPopUpTrue: Bool = false
         @State var showPopUpFalse: Bool = false
@@ -174,6 +175,7 @@ struct SecondView:View {
                     
                 //Location Picker
                 Picker("Please choose a city", selection: $selectedCity) {
+                    //loops through each supported city and adds it to the picker selection
                     ForEach(self.cities, id: \.self) {
                         city in Text(city).tag(city)
                     }
@@ -191,10 +193,10 @@ struct SecondView:View {
                 
                 Button(
                    action: {
-                    //get city data
+                    //get city data for selected city
                     let list = parseCSV(city: self.selectedCity)
                     
-                    // finding object detection model prediction of input image
+                    // ATTEMPT: finding object detection model prediction of input image
                     /*
                     let resizedImage = inputImage?.resizeTo(size: CGSize(width: 299 , height: 299 ))
                     let buffer: CVPixelBuffer = (resizedImage?.toBuffer())!
@@ -205,10 +207,9 @@ struct SecondView:View {
                     self.y = coords[0]![1]
                     self.width = coords[0]![2]
                     self.height = coords[0]![3]
- 
-                    */
+                     */
                     
-                    //attempt to replace current image with new image and bounding boxes
+                    //ATTEMPT: replace current image with new image and bounding boxes
                     /*self.image = Image(uiImage: self.inputImage!)
                         .resizable()
                         .scaledToFit()
@@ -218,7 +219,7 @@ struct SecondView:View {
                                  x:00.51 * geometry.size.width, y: 00.508 * geometry.size.height, width: 00.799 * geometry.size.width, height: 00.907 * geometry.size.height)).stroke(Color.red)
                      })*/
                     
-                    // atempt to replace image with version cropped around the bounding box
+                    // ATTEMPT: replace image with version cropped around the bounding box
                     /*let croppedImage = cropImage(imageToCrop: self.inputImage!, toRect: CGRectMake(x: CGFloat(self.x), y: CGFloat(self.y), width: CGFloat(self.width), height: CGFloat(self.height)))
                     self.image = self.$croppedImage
                     */
@@ -263,6 +264,7 @@ struct SecondView:View {
                 .background(Color.green)
                 .position(x:188, y:80)
                 
+                //if item can be recycled show this pop up window
                 if $showPopUpTrue.wrappedValue {
                     ZStack(alignment: .center) {
                         Color.white
@@ -302,6 +304,7 @@ struct SecondView:View {
                     .position(x: 188, y: -270)
                 }
                 
+                //if item cannot be recycled show this pop up window 
                 if $showPopUpFalse.wrappedValue {
                     ZStack(alignment: .center) {
                         Color.white
