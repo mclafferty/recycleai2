@@ -33,10 +33,17 @@ struct ContentView: View {
                             .font(.system(size:30))
                             .foregroundColor(.white)
                     })
+                //randomly generate recycling tip when user exits welcome screen
+                .simultaneousGesture(TapGesture().onEnded{
+                    quote = parseCSVFacts()
+                    print(quote)
+                })
                     .padding(.leading, 30)
                     .padding(.trailing, 30)
                     .background(Color.green)
                     .position(x:190, y:620)
+                   
+                
             }
             .background(
              Image("Welcome Screen")
@@ -44,12 +51,6 @@ struct ContentView: View {
             .offset(y:-50)
              .edgesIgnoringSafeArea(.all)
              .frame(width:UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-                .onTapGesture {
-                    //randomly generate recycling tip when user exits welcome screen
-                    quote = parseCSVFacts()
-                    print(quote)
-                }
-
              )
           
         }
@@ -74,7 +75,6 @@ struct SecondView:View {
     
     struct RecycleView: View {
         //currently supported cities
-        
         var cities: Array<String> = ["Alameda, CA", "Albany, CA", "Antioch, CA", "Bay Point, CA", "Benicia, CA", "Berkeley, CA", "Brentwood, CA",
                                     "Brisbane, CA", "Burlingame, CA", "Campbell, CA", "Concord, CA", "Corte Madera, CA", "Cupertino, CA", "Daly City, CA",
                                     "Danville, CA", "Dixon, CA", "Dublin, CA", "El Cerrito, CA", "Emeryville, CA", "Fairfield, CA", "Foster City, CA",
@@ -147,8 +147,8 @@ struct SecondView:View {
                 }.onTapGesture {
                     // add image
                     self.showingImagePicker = true
-                    
                     self.showActionSheet = true
+                    
                 } .actionSheet(isPresented: $showActionSheet) {
                     ActionSheet(title: Text("How would you like to add an image?"), message: nil, buttons: [
                     //Camera Option
@@ -240,8 +240,6 @@ struct SecondView:View {
                     let amax = tuple.maxIndex + 1
                     self.number = amax
                     
-                    //self.number = argmax + 1
-                    print(self.number)
                         
                     if list![self.number ] == "TRUE" {
                             //Item can be recycled
@@ -342,19 +340,16 @@ struct SecondView:View {
                     }.frame(width: 350, height: 610)
                     .cornerRadius(20).shadow(radius:20)
                     .position(x: 188, y: -270)
-                    
                 }
                 
             }
                 .background(
                 Image("recycle background2")
                 .resizable()
-                /*.offset(y:5)*/
                 .edgesIgnoringSafeArea(.all)
                 .frame(width:UIScreen.main.bounds.width,
                        height: UIScreen.main.bounds.height)
             )
-            
             
         }
         func loadImage() {
