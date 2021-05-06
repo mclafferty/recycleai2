@@ -43,7 +43,7 @@ func parseCSV(city: String) -> [String]?{
    return list
 }
 
-// ready recycling tips .tsv data file 
+// read recycling tips .tsv data file 
 func parseCSVFacts() -> String {
     var quote: String
     var aQuote: String = "Becuase it's become increasingly challenging to find buyers for the recycled raw materials of plastics #3-7, even post recycling, these products will get stockpiled or sent to a landfill. Purchasing products in highly recyclable materials like glass, metal, and plastics #1-2 will help reduce your environmental impact!"
