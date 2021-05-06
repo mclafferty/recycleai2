@@ -9,6 +9,7 @@
 
 //This code was taken from the SwiftCSV library to parse CSV files
 //Due to issues importing this library we decided to use the code directly
+//This file enables parsing of csv files 
 
 import Foundation
 
