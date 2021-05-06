@@ -5,12 +5,14 @@
 //  Created by Morgan Lafferty, Maylin van Cleeff, Kristine Pau on 4/22/21.
 //
 
+
+/* This file enables a user to upload an image to the UI using either their camera or photo library*/
+
 import SwiftUI
 import UIKit
 import CoreML
 import Vision
 import ImageIO
-
 
 struct imagePicker:UIViewControllerRepresentable {
     @Binding var image: UIImage?
