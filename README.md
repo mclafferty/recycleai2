@@ -10,6 +10,10 @@ We are a group of UC Berkeley undergraduate students that created Recycle.ai to 
 
 Please see below for instructions on accessing data and reproducing results.
 
+#Presentation
+Slide Deck: https://docs.google.com/presentation/d/1P3T8PaErEyRGCAvPd8Ica9FH0wvPUwhyVp2hQJkWfEU/edit?usp=sharing
+
+
 # Data
 Due to GitHub file size limits, the image data used to train all models can be found in our google drive at this link https://drive.google.com/drive/u/1/folders/1QmOEM3Dv56K2Nb0MMRIAc4LvA4wOXoH5?ths=true. 
 - Images inside the "Classification Data" folder are organized by class (plastic types 1-7) and were used to train and validate our CNN classification model. 
