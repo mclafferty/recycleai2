@@ -10,7 +10,7 @@ We are a group of UC Berkeley undergraduate students that created Recycle.ai to 
 
 Please see below for instructions on accessing data and reproducing results.
 
-#Presentation
+# Presentation
 Slide Deck: https://docs.google.com/presentation/d/1P3T8PaErEyRGCAvPd8Ica9FH0wvPUwhyVp2hQJkWfEU/edit?usp=sharing
 
 
